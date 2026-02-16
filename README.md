@@ -20,8 +20,15 @@
 ### 1. Functionality Check
 Ensure you have the necessary system dependencies.
 If you are on Linux, install `pdflatex` and common packages for resume compilation:
+
+**Debian/Ubuntu:**
 ```bash
 sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
+```
+
+**Fedora:**
+```bash
+sudo dnf install texlive-scheme-basic texlive-collection-latexextra texlive-titlesec
 ```
 
 ### 2. Start the Application
