@@ -11,22 +11,20 @@
 
 ## Prerequisites
 
--   **Node.js** (v18 or higher)
--   **Python** (v3.10 or higher)
--   **Google Gemini API Key** (Required for AI features)
+-   **Node.js** (v18 or higher) - [Download](https://nodejs.org/)
+-   **Python** (v3.10 or higher) - [Download](https://www.python.org/downloads/)
+-   **Google Gemini API Key** (Required for AI features) - [Get it here](https://aistudio.google.com/app/apikey)
 
 ## Setup Instructions
 
-### 1. Functionality Check
-Ensure you have the necessary system dependencies.
-If you are on Linux, install `pdflatex` and common packages for resume compilation:
+### 1. Install LaTeX (Required for PDF generation)
 
-**Debian/Ubuntu:**
+**Linux (Debian/Ubuntu):**
 ```bash
 sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
 ```
 
-**Fedora:**
+**Linux (Fedora):**
 ```bash
 sudo dnf install texlive-scheme-basic texlive-collection-latexextra texlive-titlesec
 ```
@@ -36,12 +34,24 @@ sudo dnf install texlive-scheme-basic texlive-collection-latexextra texlive-titl
 2. During installation, enable "Install missing packages on-the-fly".
 3. Restart your terminal to refresh the PATH.
 
-### 2. Start the Application
-We have provided a helper script to start both the Backend (Python/FastAPI) and Frontend (React/Vite) servers with one command.
-
-Run the following in your terminal:
+**macOS:**
 ```bash
+brew install --cask mactex-no-gui
+```
+
+### 2. Start the Application
+
+#### Linux/macOS:
+Run the startup script:
+```bash
+chmod +x start_server.sh
 ./start_server.sh
+```
+
+#### Windows:
+Double-click `dev.bat` or run in Command Prompt:
+```cmd
+dev.bat
 ```
 
 This will:
