@@ -1,0 +1,14 @@
+=== Python Location ===
+/usr/bin/python3
+Python 3.14.2
+=== Python Executable and Path ===
+/usr/bin/python3
+['', '/usr/lib64/python314.zip', '/usr/lib64/python3.14', '/usr/lib64/python3.14/lib-dynload', '/home/dru/.local/lib/python3.14/site-packages', '/usr/lib64/python3.14/site-packages', '/usr/lib/python3.14/site-packages']
+=== Uvicorn Version ===
+Running uvicorn 0.40.0 with CPython 3.14.2 on Linux
+Running uvicorn 0.40.0 with CPython 3.14.2 on Linux
+=== Pip List ===
+fastapi            0.129.0
+uvicorn            0.40.0
+=== Attempting Backend Import ===
+Import Success

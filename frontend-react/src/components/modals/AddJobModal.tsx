@@ -1,0 +1,133 @@
+import { useState } from "react";
+import { X, Loader2 } from "lucide-react";
+import { MetallicButton } from "../ui/MetallicButton";
+
+interface AddJobModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    onJobAdded: () => void;
+}
+
+export function AddJobModal({ isOpen, onClose, onJobAdded }: AddJobModalProps) {
+    const [loading, setLoading] = useState(false);
+    const [formData, setFormData] = useState({
+        company: "",
+        position: "",
+        status: "Applied",
+        location: "",
+        url: ""
+    });
+
+    if (!isOpen) return null;
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+
+        try {
+            const res = await fetch("/api/v1/jobs/", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    ...formData,
+                    date_applied: new Date().toISOString().split('T')[0]
+                })
+            });
+            if (!res.ok) throw new Error("Failed to add job");
+
+            onJobAdded();
+            onClose();
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+            <div className="w-full max-w-md bg-midnight-900 border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
+                <div className="flex items-center justify-between p-4 border-b border-white/5 bg-white/5">
+                    <h2 className="text-lg font-bold text-white">Add New Application</h2>
+                    <button onClick={onClose} className="text-metal-400 hover:text-white transition-colors">
+                        <X className="w-5 h-5" />
+                    </button>
+                </div>
+
+                <form onSubmit={handleSubmit} className="p-6 space-y-4">
+                    <div className="space-y-1">
+                        <label className="text-xs font-medium text-metal-300 uppercase tracking-wider">Company</label>
+                        <input
+                            required
+                            className="w-full bg-metal-800/50 border border-white/10 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-pear-200/50 transition-colors"
+                            placeholder="e.g. Google"
+                            value={formData.company}
+                            onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                        />
+                    </div>
+
+                    <div className="space-y-1">
+                        <label className="text-xs font-medium text-metal-300 uppercase tracking-wider">Position</label>
+                        <input
+                            required
+                            className="w-full bg-metal-800/50 border border-white/10 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-pear-200/50 transition-colors"
+                            placeholder="e.g. Senior Software Engineer"
+                            value={formData.position}
+                            onChange={(e) => setFormData({ ...formData, position: e.target.value })}
+                        />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-1">
+                            <label className="text-xs font-medium text-metal-300 uppercase tracking-wider">Status</label>
+                            <select
+                                className="w-full bg-metal-800/50 border border-white/10 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-pear-200/50 transition-colors appearance-none"
+                                value={formData.status}
+                                onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+                            >
+                                <option value="Applied">Applied</option>
+                                <option value="Interviewing">Interviewing</option>
+                                <option value="Offer">Offer</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                        </div>
+                        <div className="space-y-1">
+                            <label className="text-xs font-medium text-metal-300 uppercase tracking-wider">Location</label>
+                            <input
+                                className="w-full bg-metal-800/50 border border-white/10 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-pear-200/50 transition-colors"
+                                placeholder="e.g. Remote"
+                                value={formData.location}
+                                onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="space-y-1">
+                        <label className="text-xs font-medium text-metal-300 uppercase tracking-wider">Job URL</label>
+                        <input
+                            type="url"
+                            className="w-full bg-metal-800/50 border border-white/10 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-pear-200/50 transition-colors"
+                            placeholder="https://..."
+                            value={formData.url}
+                            onChange={(e) => setFormData({ ...formData, url: e.target.value })}
+                        />
+                    </div>
+
+                    <div className="pt-4 flex justify-end gap-3">
+                        <button
+                            type="button"
+                            onClick={onClose}
+                            className="px-4 py-2 rounded-lg text-sm font-medium text-metal-400 hover:text-white transition-colors"
+                        >
+                            Cancel
+                        </button>
+                        <MetallicButton type="submit" disabled={loading} className="bg-pear-200 text-midnight-900 hover:brightness-110">
+                            {loading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                            Add Application
+                        </MetallicButton>
+                    </div>
+                </form>
+            </div>
+        </div>
+    );
+}

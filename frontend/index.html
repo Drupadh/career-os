@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career OS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>Career OS</h2>
+            </div>
+            <ul class="nav-links">
+                <li class="nav-item active" id="nav-tracker" onclick="switchMainTab('tracker')">
+                    <i class="fa-solid fa-briefcase"></i> Job Tracker
+                </li>
+                <li class="nav-item" id="nav-resume" onclick="switchMainTab('resume')">
+                    <i class="fa-solid fa-file-invoice"></i> Resume Builder
+                </li>
+                <li class="nav-item" id="nav-mentor" onclick="switchMainTab('mentor')">
+                    <i class="fa-solid fa-user-graduate"></i> My Mentor (Beta)
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+
+            <!-- Job Tracker View -->
+            <div id="view-tracker" class="main-view active">
+                <header class="app-header">
+                    <h1 id="page-title">Applications</h1>
+                    <div class="header-controls">
+                        <div class="search-bar">
+                            <i class="fa-solid fa-search"></i>
+                            <input type="text" id="search-input" placeholder="Search...">
+                        </div>
+                        <button class="btn-primary" id="add-btn">
+                            <i class="fa-solid fa-plus"></i> <span id="add-btn-text">Add Job</span>
+                        </button>
+                    </div>
+                </header>
+
+                <div class="tabs">
+                    <button class="tab-btn active" id="tab-jobs">All Applications</button>
+                    <button class="tab-btn" id="tab-network">Networking</button>
+                    <button class="tab-btn" id="tab-companies">Target Companies</button>
+                </div>
+
+                <div class="stats-bar glass-panel">
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-total-jobs">0</span>
+                        <span class="stat-label">Applications</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-interviewing">0</span>
+                        <span class="stat-label">Interviews</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-offers">0</span>
+                        <span class="stat-label">Offers</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-total-contacts">0</span>
+                        <span class="stat-label">Contacts</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-referrals">0</span>
+                        <span class="stat-label">Referrals</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-total-companies">0</span>
+                        <span class="stat-label">Targets</span>
+                    </div>
+                </div>
+
+                <div id="jobs-view" class="content-view active">
+                    <div class="grid-container" id="jobs-grid"></div>
+                </div>
+
+                <div id="network-view" class="content-view">
+                    <div class="grid-container" id="contacts-grid"></div>
+                </div>
+
+                <div id="companies-view" class="content-view">
+                    <div class="grid-container" id="companies-grid"></div>
+                </div>
+            </div>
+
+            <!-- Resume Builder View -->
+            <div id="view-resume" class="main-view" style="display: none;">
+                <header class="app-header">
+                    <h1>Resume Builder</h1>
+                    <div class="header-controls">
+                        <button class="btn-primary" onclick="generateResume()">
+                            <i class="fa-solid fa-download"></i> Generate PDF
+                        </button>
+                    </div>
+                </header>
+
+                <div class="resume-container glass-panel">
+                    <form id="resume-form">
+                        <h3>Personal Info</h3>
+                        <div class="form-row">
+                            <input type="text" name="name" placeholder="Full Name" class="form-control"
+                                value="Dru Suresh">
+                            <input type="text" name="phone" placeholder="Phone" class="form-control"
+                                value="(773) 312-1537">
+                        </div>
+                        <div class="form-row">
+                            <input type="email" name="email" placeholder="Email" class="form-control"
+                                value="sureshdrupadh@gmail.com">
+                            <input type="text" name="linkedin" placeholder="LinkedIn URL" class="form-control"
+                                value="https://www.linkedin.com/in/drupadhsuresh/">
+                        </div>
+
+                        <h3>Professional Summary</h3>
+                        <textarea name="summary" class="form-control"
+                            rows="4">Cybersecurity Analyst and Master's candidate specializing in Security Operations...</textarea>
+
+                        <h3>Experience (JSON for now)</h3>
+                        <textarea name="experience_json" class="form-control" rows="6"
+                            placeholder='[{"title": "Role", "company": "Co", "date": "2024", "location": "Chicago", "bullets": ["Did X"]}]'></textarea>
+
+                        <!-- Add more sections as needed -->
+                    </form>
+                </div>
+            </div>
+
+            <!-- Mentor View (Placeholder) -->
+            <div id="view-mentor" class="main-view" style="display: none;">
+                <header class="app-header">
+                    <h1>AI Career Mentor</h1>
+                </header>
+                <div class="glass-panel" style="padding: 2rem; text-align: center;">
+                    <h2>Coming Soon in Phase 2</h2>
+                    <p>Your personal AI career strategist will arrive shortly.</p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Modal for Job Tracker -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal glass-panel">
+            <div class="modal-header">
+                <h2 id="modal-title">Add New Job</h2>
+                <button class="close-btn" onclick="closeModal()"><i class="fa-solid fa-times"></i></button>
+            </div>
+            <form id="item-form">
+                <input type="hidden" id="entry-type" value="job">
+                <input type="hidden" id="entry-id" value="">
+                <div id="form-fields">
+                    <!-- Dynamic Fields -->
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
