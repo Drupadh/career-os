@@ -19,9 +19,9 @@
 
 ### 1. Functionality Check
 Ensure you have the necessary system dependencies.
-If you are on Linux, install `pdflatex` for resume compilation:
+If you are on Linux, install `pdflatex` and common packages for resume compilation:
 ```bash
-sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra
+sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
 ```
 
 ### 2. Start the Application
