@@ -9,6 +9,28 @@
 -   **AI Tailoring**: Automatically tailor your resume content to match a specific Job Description using Google's Gemini AI.
 -   **Networking**: Manage professional contacts and companies.
 
+## Screenshots
+
+### Job Tracker
+![Job Tracker](screenshots/job-tracker.png)
+*Kanban-style board to manage applications through different stages*
+
+### AI Resume Builder
+![Resume Builder](screenshots/resume-builder.png)
+*LaTeX editor with live PDF preview and AI-powered tailoring*
+
+### Target Companies
+![Companies](screenshots/companies.png)
+*Track companies you're interested in*
+
+### Network & Referrals
+![Referrals](screenshots/referrals.png)
+*Manage professional connections and referral requests*
+
+### Whiteboard Notes
+![Notes](screenshots/notes.png)
+*Capture thoughts, links, and ideas*
+
 ## Prerequisites
 
 -   **Node.js** (v18 or higher) - [Download](https://nodejs.org/)
