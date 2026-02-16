@@ -31,6 +31,11 @@ sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-
 sudo dnf install texlive-scheme-basic texlive-collection-latexextra texlive-titlesec
 ```
 
+**Windows:**
+1. Download and install [MiKTeX](https://miktex.org/download) or [TeX Live](https://www.tug.org/texlive/).
+2. During installation, enable "Install missing packages on-the-fly".
+3. Restart your terminal to refresh the PATH.
+
 ### 2. Start the Application
 We have provided a helper script to start both the Backend (Python/FastAPI) and Frontend (React/Vite) servers with one command.
 
