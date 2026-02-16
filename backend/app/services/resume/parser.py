@@ -72,6 +72,13 @@ class ResumeParser:
                     "bullets": ["Description"]
                 }}
             ],
+            "certifications": [
+                {{
+                    "name": "Certification Name",
+                    "provider": "Provider (e.g., Cisco, CompTIA)",
+                    "url": "Verification URL (if available)"
+                }}
+            ],
             "skills": {{
                 "languages": "List of languages",
                 "frameworks": "List of frameworks",
@@ -86,6 +93,13 @@ class ResumeParser:
         - Return ONLY valid JSON.
         - Do not include markdown code blocks.
         - If a field is missing, use an empty string or empty list/dict as appropriate.
+        - **CERTIFICATIONS**: Look for certification verification URLs in the text. Common patterns:
+          - Cisco: https://cp.certmetrics.com/cisco/...
+          - CompTIA: https://cp.certmetrics.com/comptia/...
+          - Microsoft: https://learn.microsoft.com/...
+          - Google/Credly: https://www.credly.com/...
+          If you find URLs near certification names, include them in the "url" field.
+          If no URL found, leave "url" as empty string.
         """
 
         try:

@@ -96,8 +96,13 @@ def tailor_resume(request: dict):
 
         from app.services.resume.ai_tailor import AITailor
         tailor = AITailor(api_key)
-        tailored_latex = tailor.tailor_resume(resume_text, job_description)
-        return {"tailored_resume": tailored_latex}
+        # tailor_resume now returns a dict with latex_code and explanation
+        result = tailor.tailor_resume(resume_text, job_description)
+        
+        return {
+            "tailored_resume": result.get("latex_code", ""),
+            "message": result.get("explanation", "I've tailored your resume.")
+        }
 
     except HTTPException as he:
         raise he
@@ -121,13 +126,30 @@ def tailor_resume(request: dict):
         raise HTTPException(status_code=500, detail=f"Internal Server Error: {error_str}")
 
 @router.post("/import")
-async def import_resume(file: UploadFile, api_key: str):
+async def import_resume(file: UploadFile, api_key: str, format: str = "json"):
     try:
         from app.services.resume.parser import ResumeParser
         parser = ResumeParser(api_key)
         parsed_data = await parser.parse_file(file)
+        
+        if format == "latex":
+             # Load Jake Ryan template
+            template_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "templates", "jake_ryan.tex")
+            if not os.path.exists(template_path):
+                 # Fallback if template is missing (should verify this path)
+                 raise HTTPException(status_code=500, detail="Template file not found")
+            
+            with open(template_path, "r") as f:
+                template_content = f.read()
+
+            from app.services.resume.ai_tailor import AITailor
+            tailor = AITailor(api_key)
+            latex_code = tailor.convert_json_to_latex(parsed_data, template_content)
+            return {"latex": latex_code, "json": parsed_data}
+
         return parsed_data
     except Exception as e:
+        print(f"Import Error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 class CompileRequest(BaseModel):

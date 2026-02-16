@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { PanelLeft, FileText, Code, Play, Download, Send, Sparkles } from 'lucide-react';
+import { PanelLeft, FileText, Code, Play, Download, Send, Sparkles, FileUp, Loader2 } from 'lucide-react';
 import { MetallicButton } from '../ui/MetallicButton';
+import { DEFAULT_LATEX_TEMPLATE } from './ResuTexTemplate';
 
 export function ResumeWorkspace() {
     const [leftPanelOpen, setLeftPanelOpen] = useState(true);
@@ -13,6 +14,8 @@ export function ResumeWorkspace() {
     ]);
     const [inputMessage, setInputMessage] = useState('');
     const messagesEndRef = useRef<null | HTMLDivElement>(null);
+    const fileInputRef = useRef<HTMLInputElement>(null);
+    const [importing, setImporting] = useState(false);
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -90,7 +93,7 @@ export function ResumeWorkspace() {
                 setLatexCode(data.tailored_resume);
                 setMessages(prev => [...prev, {
                     role: 'assistant',
-                    content: "I've tailored your resume based on the job description. The LaTeX code has been updated. You can now Compile to see the changes."
+                    content: data.message || "I've updated your resume based on the job description. The LaTeX code is ready for you to Compile."
                 }]);
 
                 // Auto-compile? Maybe optional. Let's let user click compile for now to respect "preview".
@@ -106,6 +109,45 @@ export function ResumeWorkspace() {
             setIsTailoring(false);
         }
     };
+
+    const handleImportClick = () => {
+        fileInputRef.current?.click();
+    };
+
+    const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files?.length) return;
+        const file = e.target.files[0];
+        setImporting(true);
+
+        const formData = new FormData();
+        formData.append("file", file);
+        const apiKey = localStorage.getItem('gemini_api_key') || "";
+
+        try {
+            const res = await fetch(`/api/v1/resumes/import?api_key=${apiKey}&format=latex`, {
+                method: "POST",
+                body: formData
+            });
+
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.detail || "Import failed");
+            }
+
+            const data = await res.json();
+            if (data.latex) {
+                setLatexCode(data.latex);
+                setMessages(prev => [...prev, { role: 'assistant', content: "I've imported your resume and converted it to the LaTeX template! You can now compile it to see the result." }]);
+            }
+        } catch (err: any) {
+            console.error(err);
+            setMessages(prev => [...prev, { role: 'assistant', content: `Failed to import resume: ${err.message}` }]);
+        } finally {
+            setImporting(false);
+            if (fileInputRef.current) fileInputRef.current.value = "";
+        }
+    };
+
 
     return (
         <div className="flex h-full w-full overflow-hidden bg-background relative">
@@ -207,6 +249,17 @@ export function ResumeWorkspace() {
                         <Code className="w-3 h-3" /> LaTeX Editor
                     </span>
                     <div className="flex gap-2">
+                        <input
+                            type="file"
+                            ref={fileInputRef}
+                            className="hidden"
+                            accept=".pdf,.docx"
+                            onChange={handleFileChange}
+                        />
+                        <MetallicButton size="sm" variant="secondary" onClick={handleImportClick} disabled={importing}>
+                            {importing ? <Loader2 className="w-3 h-3 mr-1 animate-spin" /> : <FileUp className="w-3 h-3 mr-1" />}
+                            Import
+                        </MetallicButton>
                         <MetallicButton size="sm" variant="gradient" onClick={handleCompile} isLoading={isCompiling}>
                             <Play className="w-3 h-3 mr-1" /> Compile
                         </MetallicButton>
@@ -230,104 +283,4 @@ export function ResumeWorkspace() {
     );
 }
 
-const DEFAULT_LATEX_TEMPLATE = String.raw`%-------------------------
-% Resume in Latex
-% Author : Jake Gutierrez
-% Based off of: https://github.com/sb2nov/resume
-% License : MIT
-%------------------------
 
-\documentclass[letterpaper,11pt]{article}
-
-\usepackage{latexsym}
-\usepackage[empty]{fullpage}
-\usepackage{titlesec}
-\usepackage{marvosym}
-\usepackage[usenames,dvipsnames]{color}
-\usepackage{verbatim}
-\usepackage{enumitem}
-\usepackage[hidelinks]{hyperref}
-\usepackage{fancyhdr}
-\usepackage[english]{babel}
-\usepackage{tabularx}
-\input{glyphtounicode}
-
-\pagestyle{fancy}
-\fancyhf{} 
-\fancyfoot{}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-
-% Adjust margins
-\addtolength{\oddsidemargin}{-0.5in}
-\addtolength{\evensidemargin}{-0.5in}
-\addtolength{\textwidth}{1in}
-\addtolength{\topmargin}{-.5in}
-\addtolength{\textheight}{1.0in}
-
-\urlstyle{same}
-
-\raggedbottom
-\raggedright
-\setlength{\tabcolsep}{0in}
-
-% Sections formatting
-\titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
-
-\pdfgentounicode=1
-
-% Custom commands
-\newcommand{\resumeItem}[1]{
-  \item\small{
-    {#1 \vspace{-2pt}}
-  }
-}
-
-\newcommand{\resumeSubheading}[4]{
-  \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 \\
-      \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-7pt}
-}
-
-\newcommand{\resumeSubSubheading}[2]{
-    \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \textit{\small#1} & \textit{\small #2} \\
-    \end{tabular*}\vspace{-7pt}
-}
-
-\newcommand{\resumeProjectHeading}[2]{
-    \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \small#1 & #2 \\
-    \end{tabular*}\vspace{-7pt}
-}
-
-\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
-
-\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
-
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
-\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
-
-%-------------------------------------------
-%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{document}
-
-\begin{center}
-    \textbf{\Huge \scshape Jake Ryan} \\ \vspace{1pt}
-    \small 123-456-7890 $|$ \href{mailto:x@x.com}{\underline{jake@su.edu}} $|$ 
-    \href{https://linkedin.com/in/...}{\underline{linkedin.com/in/jake}} $|$
-    \href{https://github.com/...}{\underline{github.com/jake}}
-\end{center}
-
-% ... (Rest of template to be pre-filled)
-\end{document}
-`;

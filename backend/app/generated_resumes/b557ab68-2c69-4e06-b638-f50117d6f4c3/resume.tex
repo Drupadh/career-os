@@ -1,0 +1,206 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.6in}
+\addtolength{\textheight}{1.2in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+%   \textbf{\href{http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
+%   \href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
+% \end{tabular*}
+
+\begin{center}
+    \textbf{\Huge \scshape DRUPADH SURESH} \\ \vspace{1pt}
+    \small (773) 312-1537 $|$ \href{mailto:sureshdrupadh@gmail.com}{\underline{sureshdrupadh@gmail.com}} $|$ 
+    \href{https://linkedin.com/in/...}{\underline{LinkedIn}} $|$
+    \href{https://github.com/...}{\underline{}}
+\end{center}
+
+%-----------SUMMARY-----------
+\textbf{CCNA and Security+ certified IT Support and Network Technician with hands-on experience providing technical assistance, troubleshooting, and system administration across Windows and Linux environments. Proven ability in diagnosing hardware, software, and network connectivity issues, managing Active Directory and Microsoft 365 accounts, and ensuring smooth end-user operations. Recognized for strong communication, attention to detail, and commitment to delivering reliable IT solutions.}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {DePaul University}{Chicago, IL}
+      {M.S. Cybersecurity}{Jun 2025}
+    \resumeSubheading
+      {P.E.S.C.E}{Karnataka, India}
+      {B.E. Computer Science}{Jul 2022}
+  \resumeSubHeadingListEnd
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {AI Systems Engineer}{Chicago, IL}
+      {Stapur}{Nov 2025 -- Present}
+      \resumeItemListStart
+        \resumeItem{Engineered multi-agent orchestration systems using Python (FastAPI) and Gemini, significantly reducing processing time for complex data analysis.}
+        \resumeItem{Integrated JIRA via Model Context Protocol (MCP) to automate epic synchronization and streamline developer handoffs.}
+        \resumeItem{Developed a modern web interface with real-time agent tracking and interactive Mermaid.js visualizations for dynamic architecture mapping.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Junior Network Engineer}{Chicago IL}
+      {ChiEAC(NGO)}{Oct 2025 -- Present}
+      \resumeItemListStart
+        \resumeItem{Designed and optimized LAN/WAN infrastructure using routing, switching, VLANs, and subnetting to support critical community programs.}
+        \resumeItem{Managed network services (DNS, DHCP, NAT, VPN) to guarantee secure and reliable connectivity for remote volunteers and on-site staff.}
+        \resumeItem{Strengthened network security by implementing firewall rules, access controls, and segmentation to protect sensitive nonprofit data.}
+        \resumeItem{Resolved network incidents using packet analysis and troubleshooting tools, minimizing downtime for volunteer interactions.}
+    \resumeItemListEnd
+
+    \resumeSubheading
+      {Help Desk Administrator}{Chicago, IL}
+      {DePaul University}{Mar 2024 -- May 2025}
+      \resumeItemListStart
+        \resumeItem{Delivered Tier I and Tier II technical support for students, staff, and faculty, maintaining over 95\% system uptime.}
+        \resumeItem{Diagnosed and resolved hardware, software, and network connectivity issues on 20+ Windows and Linux workstations.}
+        \resumeItem{Administered Active Directory user accounts, password resets, and Microsoft 365 access, ensuring secure and efficient user management.}
+        \resumeItem{Supported AV systems, printers, and Wi-Fi across 10+ event spaces, providing seamless technical operations for 50+ campus events.}
+        \resumeItem{Documented recurring issues and contributed to the internal IT knowledge base, reducing repeat tickets by 30\%}
+    \resumeItemListEnd
+
+    \resumeSubheading
+      {Advanced Associate Software Engineer}{Bengaluru, India}
+      {Accenture}{Aug 2022 -- May 2023}
+      \resumeItemListStart
+        \resumeItem{Provided technical support and troubleshooting for internal users across Microsoft 365 and Azure environments.}
+        \resumeItem{Managed user accounts, access permissions, and security policies through Azure Active Directory and network security groups.}
+        \resumeItem{Assisted in system maintenance, patching, and performance monitoring to ensure high availability across multiple environments.}
+        \resumeItem{Logged incidents and documented issue resolutions in the ticketing system, improving response time and service consistency.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Network Hardening and Incident Response} $|$ \emph{}}{01/2025}
+          \resumeItemListStart
+            \resumeItem{Deployed layered network defenses and incident response protocols to secure Linux servers, mitigate threats, and maintain uptime during Red team-based security assessments.}
+            \resumeItem{Built iptables firewall rules and implemented Fail2Ban, modsecurity, and SSL/TLS for secure service access.}
+            \resumeItem{Conducted vulnerability scans, log analysis, and hardening of Linux servers to meet compliance standards.}
+            \resumeItem{Authored runbooks for incident response, improving resolution time by 60\% and boosting uptime by 90\%.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+
+
+%
+%-----------PROGRAMMING SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{IT Support}{: Help Desk Operations, Troubleshooting (Hardware, Software, Network), Ticketing Systems (ServiceNow, Jira), Remote Support (TeamViewer, AnyDesk, RDP), System Imaging, Patch Management, Asset Tracking} \\
+     \textbf{Microsoft Technologies}{: Active Directory, Microsoft 365 Administration, Windows Server, User Account Management, Password Resets, Access Permissions, File/Print Server Support} \\
+     \textbf{Networking}{: TCP/IP, DNS, DHCP, VLANs, VPN, Basic Routing \& Switching, Wi-Fi Configuration, Network Device Setup \& Maintenance} \\
+     \textbf{Security}{: Endpoint Security, Antivirus \& Patch Updates, Microsoft Defender, Basic Firewall Rules, Log Monitoring (Splunk, Wireshark), System Hardening} \\
+     \textbf{Operating Systems}{: Windows, Linux}
+    }}
+ \end{itemize}
+
+
+%-------------------------------------------
+\end{document}

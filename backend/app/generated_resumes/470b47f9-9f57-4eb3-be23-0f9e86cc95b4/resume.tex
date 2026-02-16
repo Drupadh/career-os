@@ -1,0 +1,147 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\pdfgentounicode=1
+
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Huge \scshape Jake Ryan} \\ \vspace{1pt}
+    \small 123-456-7890 $|$ \href{mailto:x@x.com}{\underline{jake@su.edu}} $|$ 
+    \href{https://linkedin.com/in/...}{\underline{linkedin.com/in/jake}} $|$
+    \href{https://github.com/...}{\underline{github.com/jake}}
+\end{center}
+
+\section{Summary}
+\resumeSubHeadingListStart
+    \resumeItem{Highly motivated and skilled Network Engineer with a strong understanding of network infrastructure, security principles, and troubleshooting techniques. Proven ability to design, implement, and maintain LAN, WAN, and intranet environments. Hands-on experience with firewalls, VPNs, intrusion detection/prevention systems, routers, and switches. Eager to contribute to a business-critical network environment, ensuring its security, performance, and stability.}
+\resumeSubHeadingListEnd
+
+\section{Skills}
+\resumeSubHeadingListStart
+    \resumeItem{Networking: LAN, WAN, TCP/IP, Routing Protocols (e.g., OSPF, BGP), Switching, Wireless Networking}
+    \resumeItem{Security: Firewalls (e.g., Cisco ASA, Palo Alto), VPN, Intrusion Detection/Prevention Systems (IDS/IPS), Network Security Protocols}
+    \resumeItem{Network Monitoring: Performance Monitoring, Security Monitoring, Capacity Planning}
+    \resumeItem{Cloud Technologies: Experience with cloud environments (AWS, Azure, GCP) is a plus}
+    \resumeItem{Operating Systems: Windows Server, Linux}
+    \resumeItem{Other: Scripting (e.g., Python, Bash), Automation Tools}
+\resumeSubHeadingListEnd
+
+
+\section{Experience}
+\resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Company Name}{City, State}
+      {Job Title}{Dates of Employment}
+      \resumeItemListStart
+        \resumeItem{Designed, implemented, and supported LAN/WAN environments, ensuring optimal network performance and availability.}
+        \resumeItem{Administered and maintained routers, switches, firewalls, wireless networks, and voice networks.}
+        \resumeItem{Implemented and maintained cybersecurity controls, including firewalls, IDS, and VPNs, to protect network infrastructure.}
+        \resumeItem{Troubleshooted complex network issues and documented changes and resolutions to ensure network stability and security.}
+        \resumeItem{Monitored network performance, security, and capacity across on-premise and cloud environments.}
+      \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+\section{Projects}
+\resumeSubHeadingListStart
+    \resumeProjectHeading
+      {Project Name}{Dates}
+      \resumeItemListStart
+        \resumeItem{Brief description of the project and its impact.  Focus on network-related aspects and skills used.}
+      \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{Education}
+\resumeSubHeadingListStart
+    \resumeSubheading
+      {University Name}{City, State}
+      {Degree}{Graduation Date}
+\resumeSubHeadingListEnd
+
+\end{document}
