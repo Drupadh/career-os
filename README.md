@@ -113,3 +113,39 @@ Once the application is running:
 
 -   **Backend**: `backend/app/` (FastAPI)
 -   **Frontend**: `frontend-react/src/` (React + TypeScript + Tailwind)
+
+## About
+
+**CareerOS** is an open-source job application management system designed to streamline your job search workflow. Built with modern web technologies, it combines powerful AI capabilities with an intuitive interface to help you track applications, manage professional connections, and create ATS-optimized resumes.
+
+### Tech Stack
+
+**Frontend:**
+- React 18 with TypeScript
+- Vite for fast development
+- Tailwind CSS for styling
+- PDF.js for resume previews
+
+**Backend:**
+- FastAPI (Python)
+- SQLAlchemy ORM
+- Google Gemini AI (2.0 Flash)
+- LaTeX for PDF generation
+
+**AI Features:**
+- Resume parsing from PDF/DOCX
+- Intelligent LaTeX conversion
+- Job description tailoring
+- ATS optimization
+
+### License
+
+MIT License - feel free to use, modify, and distribute as needed.
+
+### Author
+
+Created by [Drupadh](https://github.com/Drupadh)
+
+---
+
+**Star ⭐ this repo if you find it useful!**
