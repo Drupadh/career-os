@@ -31,6 +31,10 @@
 ![Notes](screenshots/notes.png)
 *Capture thoughts, links, and ideas*
 
+### Settings
+![Settings](screenshots/settings.png)
+*Configure your Gemini API key and preferences*
+
 ## Prerequisites
 
 -   **Node.js** (v18 or higher) - [Download](https://nodejs.org/)
